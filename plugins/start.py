@@ -33,7 +33,7 @@ from shortzy import Shortzy
 
 """add time in seconds for waiting before delete 
 1 min = 60, 2 min = 60 × 2 = 120, 5 min = 60 × 5 = 300"""
-# SECONDS = int(os.getenv("SECONDS", "1200"))
+SECONDS = int(os.getenv("SECONDS", "1200"))
 
 @Bot.on_message(filters.command('start') & filters.private & subscribed)
 async def start_command(client: Client, message: Message):
@@ -105,10 +105,11 @@ async def start_command(client: Client, message: Message):
             snt_msgs = []
             
             for msg in messages:
-                if bool(CUSTOM_CAPTION) & bool(msg.document):
-                    caption = CUSTOM_CAPTION.format(previouscaption="" if not msg.caption else msg.caption.html, filename=msg.document.file_name)
+                original_caption = msg.caption.html if msg.caption else ""
+                if CUSTOM_CAPTION:
+                    caption = f"{original_caption}\n\n{CUSTOM_CAPTION}"
                 else:
-                    caption = "" if not msg.caption else msg.caption.html
+                    caption = original_caption
 
                 if DISABLE_CHANNEL_BUTTON:
                     reply_markup = msg.reply_markup
@@ -126,8 +127,8 @@ async def start_command(client: Client, message: Message):
                 except:
                     pass
 
-            SD = await message.reply_text("Baka! Files will be deleted After 300 seconds. Save them to the Saved Message now!")
-            await asyncio.sleep(300)
+            SD = await message.reply_text("Baka! Files will be deleted After 20 minutes. Save them to the Saved Message now!")
+            await asyncio.sleep(1200)
 
             for snt_msg in snt_msgs:
                 try:
@@ -139,7 +140,7 @@ async def start_command(client: Client, message: Message):
         elif verify_status['is_verified']:
             reply_markup = InlineKeyboardMarkup(
                 [[InlineKeyboardButton("⚡️ ᴀʙᴏᴜᴛ", callback_data = "about"),
-                  InlineKeyboardButton('🍁 sᴇʀɪᴇsғʟɪx', url='https://t.me/Team_Netflix/40')]]
+                  InlineKeyboardButton('🍁 channel', url='https://t.me/Javpostr')]]
             )
             await message.reply_text(
                 text=START_MSG.format(
@@ -166,7 +167,7 @@ async def start_command(client: Client, message: Message):
                     [InlineKeyboardButton("• ᴏᴘᴇɴ ʟɪɴᴋ", url=link)],
                     [InlineKeyboardButton('ᴛᴜᴛᴏʀɪᴀʟ •', url=TUT_VID)]
                 ]
-                await message.reply(f"Your Ads token is expired, refresh your token and try again.\n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}\n\nWhat is the token?\n\nThis is an ads token. If you pass 1 ad, you can use the bot for 24 Hour after passing the ad.", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
+                await message.reply(f"Your Ads token is expired, refresh your token and try again.\n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}\n\nWhat is the token?\n\nThis is an ads token. If you pass 1 ad, you can use the bot for 2 Minute after passing the ad.", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
 
 
 
