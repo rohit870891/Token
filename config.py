@@ -2,7 +2,6 @@
 import os
 import logging
 from logging.handlers import RotatingFileHandler
-from dotenv import load_dotenv
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
