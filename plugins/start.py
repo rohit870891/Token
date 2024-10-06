@@ -139,10 +139,12 @@ async def start_command(client: Client, message: Message):
 
         elif verify_status['is_verified']:
             reply_markup = InlineKeyboardMarkup(
-                [[InlineKeyboardButton("⚡️ ᴀʙᴏᴜᴛ", callback_data = "about"),
-                  InlineKeyboardButton('🍁 channel', url='https://t.me/Javpostr')]]
+                [
+                    [InlineKeyboardButton("😊 About Me", callback_data="about"), InlineKeyboardButton("🔒 Close", callback_data="close")]
+                    [InlineKeyboardButton('BUY PREMIUM', callback_data='buy_prem')]
+                ]
             )
-            await message.reply_text(
+             await message.reply_text(
                 text=START_MSG.format(
                     first=message.from_user.first_name,
                     last=message.from_user.last_name,
