@@ -36,7 +36,6 @@ async def start_command(client: Client, message: Message):
         # Owner-specific actions
         # You can add any additional actions specific to the owner here
         await message.reply("You are the owner! Additional actions can be added here.")
-
     else:
         if not await present_user(id):
             try:
@@ -56,7 +55,6 @@ async def start_command(client: Client, message: Message):
             if verify_status["link"] == "":
                 reply_markup = None
             await message.reply(f"Your token successfully verified and valid for: 24 Hour", reply_markup=reply_markup, protect_content=False, quote=True)
-
         elif len(message.text) > 7 and verify_status['is_verified']:
             try:
                 base64_string = message.text.split(" ", 1)[1]
@@ -71,7 +69,7 @@ async def start_command(client: Client, message: Message):
                 except:
                     return
                 if start <= end:
-                    ids = range(start, end+1)
+                    ids = range(start, end + 1)
                 else:
                     ids = []
                     i = start
@@ -92,9 +90,9 @@ async def start_command(client: Client, message: Message):
                 await message.reply_text("Something went wrong..!")
                 return
             await temp_msg.delete()
-            
+
             snt_msgs = []
-            
+
             for msg in messages:
                 original_caption = msg.caption.html if msg.caption else ""
                 if CUSTOM_CAPTION:
@@ -119,49 +117,48 @@ async def start_command(client: Client, message: Message):
                     pass
 
             SD = await message.reply_text("Baka! Files will be deleted After 20 minutes. Save them to the Saved Message now!")
-await asyncio.sleep(1200)
+            await asyncio.sleep(1200)
 
-for snt_msg in snt_msgs:
-    try:
-        await snt_msg.delete()
-        await SD.delete()
-    except:
-        pass
-
-elif verify_status['is_verified']:
-    reply_markup = InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("😊 About Me", callback_data="about"), InlineKeyboardButton("🔒 Close", callback_data="close")],
-            [InlineKeyboardButton('BUY PREMIUM', callback_data='buy_prem')]
-        ]
-    )
-    await message.reply_text(
-        text=START_MSG.format(
-            first=message.from_user.first_name,
-            last=message.from_user.last_name,
-            username=None if not message.from_user.username else '@' + message.from_user.username,
-            mention=message.from_user.mention,
-            id=message.from_user.id
-        ),
-        reply_markup=reply_markup,
-        disable_web_page_preview=True,
-        quote=True
-    )
-
-else:
-    verify_status = await get_verify_status(id)
-    if IS_VERIFY and not verify_status['is_verified']:
-        short_url = f"publicearn.in"
-        # TUT_VID = f"https://t.me/How_to_Download_7x/35"
-        token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-        await update_verify_status(id, verify_token=token, link="")
-        link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API, f'https://telegram.dog/{client.username}?start=verify_{token}')
-        btn = [
-            [InlineKeyboardButton("Click here", url=link), InlineKeyboardButton('How to use the bot', url=TUT_VID)],
-            [InlineKeyboardButton('BUY PREMIUM', callback_data='buy_prem')]
-        ]
-        await message.reply(f"Your Ads token is expired or invalid. Please verify to access the files.\n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}\n\nWhat is the token?\n\nThis is an ads token. If you pass 1 ad, you can use the bot for 2 Minutes after passing the ad.", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
-        return
+            for snt_msg in snt_msgs:
+                try:
+                    await snt_msg.delete()
+                    await SD.delete()
+                except:
+                    pass
+        elif verify_status['is_verified']:
+            reply_markup = InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("😊 About Me", callback_data="about"), InlineKeyboardButton("🔒 Close", callback_data="close")],
+                    [InlineKeyboardButton('BUY PREMIUM', callback_data='buy_prem')]
+                ]
+            )
+            await message.reply_text(
+                text=START_MSG.format(
+                    first=message.from_user.first_name,
+                    last=message.from_user.last_name,
+                    username=None if not message.from_user.username else '@' + message.from_user.username,
+                    mention=message.from_user.mention,
+                    id=message.from_user.id
+                ),
+                reply_markup=reply_markup,
+                disable_web_page_preview=True,
+                quote=True
+            )
+        else:
+            verify_status = await get_verify_status(id)
+            if IS_VERIFY and not verify_status['is_verified']:
+                short_url = f"publicearn.in"
+                # TUT_VID = f"https://t.me/How_to_Download_7x/35"
+                token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+                await update_verify_status(id, verify_token=token, link="")
+                link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API, f'https://telegram.dog/{client.username}?start=verify_{token}')
+                btn = [
+                    [InlineKeyboardButton("Click here", url=link), InlineKeyboardButton('How to use the bot', url=TUT_VID)],
+                    [InlineKeyboardButton('BUY PREMIUM', callback_data='buy_prem')]
+                ]
+                await message.reply(f"Your Ads token is expired or invalid. Please verify to access the files.\n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}\n\nWhat is the token?\n\nThis is an ads token. If you pass 1 ad, you can use the bot for 2 Minutes after passing the ad.", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
+                return
+  
                
 
 
