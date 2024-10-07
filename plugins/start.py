@@ -29,9 +29,12 @@ SECONDS = int(os.getenv("SECONDS", "1200"))
 async def start_command(client: Client, message: Message):
     id = message.from_user.id
     owner_id = ADMINS  # Fetch the owner's ID from config
-
+    for i in range(1):
+            if id in ADMINS:
+                continue
     # Check if the user is the owner
     if id == owner_id:
+        continue 
         # Owner-specific actions
         # You can add any additional actions specific to the owner here
         await message.reply("You are the owner! Additional actions can be added here.")
@@ -53,7 +56,7 @@ async def start_command(client: Client, message: Message):
             await update_verify_status(id, is_verified=True, verified_time=time.time())
             if verify_status["link"] == "":
                 reply_markup = None
-            await message.reply(f"Your token successfully verified and valid for: 24 Hour", reply_markup=reply_markup, protect_content=False, quote=True)
+            await message.reply(f"Your token successfully verified and valid for: 5 minutes", reply_markup=reply_markup, protect_content=False, quote=True)
         elif len(message.text) > 7 and verify_status['is_verified']:
             try:
                 base64_string = message.text.split(" ", 1)[1]
