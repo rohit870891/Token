@@ -13,10 +13,10 @@ CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002008354608"))
 
 #OWNER ID
 OWNER_ID = int(os.environ.get("OWNER_ID", "7328629001"))
-PORT = os.environ.get("PORT", "8019")
+PORT = os.environ.get("PORT", "8039")
 
 #Database 
-DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://dheerajsharma1316:2RIA8lR5sHRlDaxh@cluster0.sv7jok6.mongodb.net/?retryWrites=true&w=majority")
+DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://koyeb77user:rohit870@cluster0.wgdkp.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = os.environ.get("DATABASE_NAME", "codeflix_bots")
 
 #Shortner (token system) 
