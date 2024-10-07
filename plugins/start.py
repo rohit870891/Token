@@ -34,7 +34,6 @@ async def start_command(client: Client, message: Message):
                 continue
     # Check if the user is the owner
     if id == owner_id:
-        continue 
         # Owner-specific actions
         # You can add any additional actions specific to the owner here
         await message.reply("You are the owner! Additional actions can be added here.")
