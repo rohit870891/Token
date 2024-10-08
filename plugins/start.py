@@ -157,7 +157,7 @@ async def start_command(client: Client, message: Message):
                     [InlineKeyboardButton("Click here", url=link), InlineKeyboardButton('How to use the bot', url=TUT_VID)],
                     [InlineKeyboardButton('BUY PREMIUM', callback_data='buy_prem')]
                 ]
-                await message.reply(f"Your Ads token is expired or invalid. Please verify to access the files.\n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}\n\nWhat is the token?\n\nThis is an ads token. If you pass 1 ad, you can use the bot for 2 Minutes after passing the ad.", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
+                await message.reply(f"Your Ads token is expired or invalid. Please verify to access the files.\n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}\n\nWhat is the token?\n\nThis is an ads token. If you pass 1 ad, you can use the bot for 5 Minutes after passing the ad.", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
                 return
   
                
