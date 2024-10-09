@@ -6,17 +6,17 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 #Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7520786912:AAH16kFKAfgbKRvMwJRu6ii2S2GzH6MD4Ko")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7520786912:AAHtx7-UbGOCMa_OWBnui6Ld3JVQrgrbtoQ")
 APP_ID = int(os.environ.get("APP_ID", "26258063"))
 API_HASH = os.environ.get("API_HASH", "be0a0e2ecd938bfc5401d35a399deeb7")
 CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002008354608"))
 
 #OWNER ID
 OWNER_ID = int(os.environ.get("OWNER_ID", "7328629001"))
-PORT = os.environ.get("PORT", "8044")
+PORT = os.environ.get("PORT", "8046")
 
 #Database 
-DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://koyeb77user:rohit870@cluster0.wgdkp.mongodb.net/?retryWrites=true&w=majority")
+DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://koyeb67user:<db_password>@cluster0.fuqhj.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = os.environ.get("DATABASE_NAME", "codeflix_bots")
 
 #Shortner (token system) 
